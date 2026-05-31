@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"> 
+    <head>
+        <meata charset="UTF-8">
+            <meata name="viewport"contant="width=device-width, initial-scale="1.0">
+                <title> student rehistration system</title>
+                <style> 
+                    /*page layout*/
+                body{
+                    font-family:'segoe UI';
+                    background-color:#f4f7f6;
+                    margin:0;
+                    padding:20px;
+                    color:#333;
+                }
+                .container{
+                    max-width:800px;
+                    margin:0 auto;
+        
+                }
+                h1,h2{
+                    text-align:center;
+                    color:#2c3e50;
+                }
+                /*input from format*/
+                form{
+                    background:#fff;
+                    padding:25px;
+                    border-radius:8px;
+                    box-shadow:0 4px 6px rgba(0,0,0,0,1);
+                    margin-bottom:4px ;
+                }
+                .from-group{
+                    margin-bottom :15px;
+                }
+                table{
+                    display: block;
+                    margin-bottom: 5px;
+                    font-weight: bold;
+                    color:#555;
+                }
+                input[type="text"],input[type="email"],
+                select{
+                    width: 100%;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    font-size: 14px;
+                }
+                input:focus,select:focus{
+                    border-color:#3498db;
+                    outline:none;
+                }
+                buttom{
+                    width:100%;
+                    background-color: #2ecc71;
+                    color:wheat; 
+                    padding:12px;
+                    border:none;
+                    border-radius:4px;
+                    font-size:16px;
+                    cursor:pointer;
+                    font-weight:bold;
+                    transition:background-color 0.3s;
+                }
+                /* table of view format */
+                table{ 
+                    width: 100%;
+                    border-collapse:collapse;
+                    margin-top: 20px;
+                    background:#fff;
+                    box-shadow: 0 4px 6px rgba(0,0,0,0,1);
+                    border-radius: 8px;
+                    overflow: hidden;
+                }
+                th,td{
+                    padding: 12px 15px;
+                    text-align: right;
+                    border-bottom: 1px solid #ddd;
+                }
+                th{
+                    background-color: #34495e;
+                    color: white;
+                }
+                tr:hover{ 
+                    background-color: #f5f5f5;
+                }
+                .emty-msg{ 
+                    text-align: center;
+                    color: #7f8c8d;
+                    padding: 20px;
+                }
+                </style>
+    </head>
+    <body>
+</html>
+<div class="container">
+    <h1> student registration  form</h1>
+</--data entry form ->
+<from action="process.php"method="past">
+    <div class="form-gruop">
+        <tabel for="name">student name:</tabel>
+        <input type="text"id="name"name="name"reguired>
+        </div>
+        <div class="form-gruop">
+            <label for="email">email address:
+            </label>
+            <input type="email"id="email"name="email"=reguired>
+        </div>
+        <div class="form-gruop">
+            <label for="srudent-id"> student number:</label>
+            <input type="text"id="student-id"name="student"reguired>
+        </div>
+        <div class="form-gruop">
+            <label for="year"> year of study:</label>
+            <select id="year"name="year"reguired> 
+                <option value=""> after year...</option>
+                <option value="first year"> first year</option>
+                <option value="second year"> second year</option>
+                <option value="third year"> third year</option>
+                <option value="fourth year"> fourth year</option>
+            </select>
+        </div>
+        <div class="form-gruop"> 
+            <label for="batch"> batch name:</label>
+            <input type="text"id="batch"name"batch"reguired>
+        </div>
+        <button type="submit"> student registration</button>
+        </from>
+        <h2> registered student</h2>
+    </--registered student desplay->
+    <table>
+        <thead>
+            <tr>
+                <th> student name</th>
+                <th> student number</th>
+                <th> year of study</th>
+                <th> batch name</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <?php
+$_FILE='student.text';
+if('file'-'exists'('$file')&& filesize('$file')>0){ 
+    //read file line by line
+$lines=file($file,file-ignore-new_lines | file-skip-empty-lines);
+foreach ($lines as $line){
+    //decode line and convert to filter again
+    $student=json_decode($line,true);
+    if($student){ 
+        echo"<tr>";
+        echo"<td>".htmlspecialchars($student['name'])
+        ."</td>";
+        echo"<td>".htmlspecialchars($student['student-id'])."</td>";
+        echo"<td>".htmlspecialchars($student['year'])."</td>";
+        echo"<td>".htmlspecialchars($student['batch'])."</td>";
+        echo"</tr>";
+    }
+}
+}
+else{
+    echo"<tr><td colspan='4'class='empty-msg'>no students currently registered.</td></tr>";
+}
+?>
+</tbody>
+</table>
+</div>
+</body>
+</html>
